@@ -1,0 +1,58 @@
+@import url('https://fonts.googleapis.com/css2?family=Baloo+Tamma+2:wght@600&family=Comic+Neue&display=swap');
+
+html,
+body {
+  margin: 0;
+  height: 0;
+  background-color: #fffdfd;
+  font-family: 'Comic Neue', cursive;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: 'Baloo Tamma 2', cursive;
+}
+
+.logo i {
+  font-size: 30px;
+}
+
+.navbar {
+  text-decoration: none;
+  background-color: #71a1d1;
+  text-align: center;
+}
+
+.main-nav {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+}
+
+.main-nav li {
+  display: inline-block;
+  margin: 1em 2em;
+}
+
+.main-nav li a {
+  display: block;
+  color: #f4fffb;
+  text-align: center;
+  margin-top: 15px;
+  margin-bottom: 15px;
+  text-decoration: none;
+}
+
+.main-nav li a:hover {
+  color: #81d0e8;
+  transition: 300ms;
+}
+
+a {
+  text-decoration: none;
+}

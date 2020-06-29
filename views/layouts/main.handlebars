@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en-CA">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="css/nav.css" type="text/css" />
+  <link rel="stylesheet" href="css/footer.css" type="text/css" />
+  <link rel="stylesheet" href="css/{{style}}" type="text/css" />
+  <link rel="shortcut icon" type="image/png" href="img/favicon.png" />
+
+  <title>{{title}}</title>
+  <script src="https://kit.fontawesome.com/cc372f963a.js" crossorigin="anonymous"></script>
+</head>
+
+<body>
+  <header>
+    <nav class="navbar">
+      <ul class="main-nav" id="menu">
+        <li><a href="/" class="nav-links">Home</a></li>
+        <li>
+          <a href="/meal-package" class="nav-links">Meal Package</a>
+        </li>
+        <li>
+          <a href="/" class="logo"><i class="fas fa-drumstick-bite"></i></a>
+        </li>
+        <li><a href="#" class="nav-links">About</a></li>
+        <li>
+          <a href="/register" class="nav-links">Login <i class="fas fa-user"></i></a>
+        </li>
+        <li>
+          <a href="#" class="nav-links"><i class="fas fa-shopping-cart"></i></a>
+        </li>
+      </ul>
+    </nav>
+  </header>
+
+  {{{body}}}
+
+  <footer>
+    <div class="grid-container-footer">
+      <div class="grid-footer">
+        <a href="/" class="logo"><i class="fas fa-drumstick-bite"></i></a>
+        <ul>
+          <li class="footList"><a href="/" class="footLink">Home</a>
+            <ul>
+              <li class="footList"><a href="/#title-meal-top" class="footLink">Top meal</a></li>
+            </ul>
+          </li>
+          <li class="footList"><a href="#" class="footLink">About us</a></li>
+        </ul>
+      </div>
+      <div class="grid-footer">
+        <h3 style="color: #f4fffb;">Our Menu</h3>
+        <ul>
+          <li class="footList">
+            <a href="/meal-package" class="footLink">Meal Package</a>
+          </li>
+
+          {{!-- Later on add more option --}}
+        </ul>
+      </div>
+      <div class="grid-footer">
+        <h3 style="color: #f4fffb;">Sign up for newsletter</h3>
+        <form action="/submit-form" method="post">
+          <input type="email" id="emailInfoNew" name="email" placeholder="Your Email" />
+          <input type="submit" id="join" value="Join Panda Feed" />
+        </form>
+        <h3 style="color: #f4fffb;">Social Media</h3>
+        <ul class="iconUl">
+          <li class="iconList"> <a href="#" class="footLink"><i class="fab fa-facebook-square"></i></a></li>
+          <li class="iconList"><a href="#" class="footLink"><i class="fab fa-weixin"></i></a></li>
+          <li class="iconList"><a href="#" class="footLink"><i class="fab fa-instagram"></i></a></li>
+          <li class="iconList"><a href="#" class="footLink"><i class="fab fa-twitter"></i></a></li>
+
+        </ul>
+      </div>
+      <div class="grid-footer" id="copyright">
+        <h5>Copyright &copy; 2020 All Rights Reserved by Kevan.</h5>
+      </div>
+    </div>
+  </footer>
+</body>
+
+</html>

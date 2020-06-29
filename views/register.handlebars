@@ -1,0 +1,61 @@
+<div class="login" id="loginPage">
+  <form action="/login-form" method="POST" class="register-login">
+    <h3>Login</h3>
+    <div class="wrap-alt-login">
+      <ul>
+        <li><a href="#"><i class="fab fa-facebook-square" style="color:#3b5998 ;"></i></a></li>
+        <li><a href="#"><i class="fab fa-google-plus-square" style="color:#dd4b39;"></i></a></li>
+      </ul>
+    </div>
+    <hr>
+
+    <div class="input">
+      <label for="Email" class="field-label">Email</label>
+      <input class="form-control" type="email" name="emailInfo" id="emailInfo" placeholder="someone@panda.com"
+        autocomplete="email" tabindex="1" required />
+      <label for="passwordInfo" class="field-label">Password</label>
+      <input class="form-control" type="password" name="passwordInfo" id="passwordInfo" placeholder="*************"
+        tabindex="2 " required />
+      <div class="button">
+        <input type="submit" class="loginBut" value="Login" tabindex="3" style="background-color:#71a1d1;
+        border: 2px solid #71a1d1;" />
+        <input type="button" class="signBut" value="Sign up" tabindex="4" id="signOff" style=" background-color: #fffdfd;
+        border: 2px solid grey ;" />
+      </div>
+    </div>
+  </form>
+</div>
+
+
+<div class="login" id="signPage" style="display: none;">
+  <form action="/register-form" method="POST" class="register-login">
+    <h3>Register</h3>
+    <div class="wrap-alt-login">
+      <ul>
+        <li><a href="#"><i class="fab fa-facebook-square" style="color:#3b5998 ;"></i></a></li>
+        <li><a href="#"><i class="fab fa-google-plus-square" style="color:#dd4b39;"></i></a></li>
+      </ul>
+    </div>
+    <hr>
+
+    <div class="input">
+      <label for="firstInfo" class="field-label">First Name</label>
+      <input class="form-control" type="text" name="firstInfo" id="firstInfo" placeholder="" tabindex="1" required />
+      <label for="lastInfo" class="field-label">Last Name</label>
+      <input class="form-control" type="text" name="lastInfo" id="lastInfo" tabindex="2" required />
+      <label for="Email" class="field-label">Email</label>
+      <input class="form-control" type="email" name="emailInfo" id="emailInfo" autocomplete="email" tabindex="3"
+        required />
+      <label for="passwordInfo" class="field-label">Password</label>
+      <input class="form-control" type="password" name="passwordInfo" id="passwordInfo" tabindex="4 " required />
+      <div class="button">
+        <input type="button" class="loginBut" value="Login" tabindex="5" id="loginOff" style=" background-color: #fffdfd;
+        border: 2px solid grey ; " />
+        <input type="submit" class="signBut" value="Sign up" tabindex="6" style="background-color: #71a1d1;
+        border: 2px solid #71a1d1;" />
+      </div>
+    </div>
+  </form>
+</div>
+
+<script src="js/loginButton.js" type="module"></script>

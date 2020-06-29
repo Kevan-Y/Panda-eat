@@ -1,0 +1,47 @@
+<div class="hero-image-main">
+  <div class="hero-text-main">
+    <h1>Panda Feed your daily meal devivery</h1>
+    <button href="#" class="hero-button-main"><a href="/meal-package" class="nav-links">View Package</a></button>
+  </div>
+</div>
+
+<div class="grid-container">
+  <div id="title">
+    <h2>No cooking, just eating.</h2>
+  </div>
+  <div class="grid-item">
+    <img src="img/computer.gif" alt="" />
+    <h3 class="subTimg">Pick</h3>
+    <p class="subDesc">Menu of all fresh dishes.</p>
+  </div>
+  <div class="grid-item">
+    <img src="img/delivery.gif" alt="" />
+    <h3 class="subTimg">Deliver</h3>
+    <p class="subDesc">Fast delivery</p>
+  </div>
+  <div class="grid-item">
+    <img src="img/eat.gif" alt="" />
+    <h3 class="subTimg">Eat</h3>
+    <p class="subDesc">Delicious &amp; nutritious</p>
+  </div>
+</div>
+
+
+<div class="grid-container-meal">
+  <div id="title-meal-top">
+    <h2>Our chefs are making these right now!</h2>
+    <p>
+      You could be chowing down on any of these meals any time you choose -
+      seriously! Order some (or all) of these meals and see why thousands of
+      Canadians stock us in their fridge!
+    </p>
+  </div>
+  {{#each topMeal }}
+  <div class="grid-meal">
+    <a href="#"><img src="img/{{this.img}}" alt="" /></a>
+    <h4>{{this.name}}</h4>
+    <h5>${{this.price}}</h5>
+  </div>
+  {{/each}}
+
+</div>

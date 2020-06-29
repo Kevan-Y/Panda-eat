@@ -1,0 +1,94 @@
+label {
+  display: block;
+}
+
+.register-login {
+  border: 1px solid #dddddd;
+}
+
+.field-label {
+  font-weight: 600;
+}
+
+.register-login h3 {
+  margin-left: 20px;
+  margin-top: -15px;
+  display: table;
+  background: #fffdfd;
+}
+
+hr {
+  background-color: grey;
+  width: 75%;
+}
+
+.login {
+  margin-top: 3em;
+  margin-bottom: 5em;
+  margin-left: auto;
+  margin-right: auto;
+  width: 400px;
+}
+
+.wrap-alt-login ul {
+  padding: 0;
+  text-align: center;
+}
+
+.wrap-alt-login ul li {
+  list-style: none;
+  display: inline;
+}
+
+.wrap-alt-login ul li a {
+  text-align: center;
+  text-decoration: none;
+}
+
+.wrap-alt-login ul li a i {
+  font-size: 40px;
+}
+
+.input {
+  display: grid;
+  grid-template-columns: repeat(2, 50%);
+  margin: 10px;
+  padding: 10px;
+  row-gap: 15px;
+}
+
+.form-control {
+  grid-column: span 2;
+  padding: 0.75em;
+}
+
+.button {
+  grid-column: span 2;
+  justify-self: end;
+  margin-top: 1em;
+  margin-bottom: 1em;
+}
+
+.button input {
+  height: 2.5em;
+  width: 7em;
+  margin-left: 1em;
+  margin-right: 1em;
+  color: black;
+}
+
+.loginBut {
+  border-radius: 25px;
+  cursor: pointer;
+}
+
+.signBut {
+  border-radius: 25px;
+  cursor: pointer;
+}
+
+@media only screen and (max-width: 450px) {
+  .login {
+    width: 300px;
+  }
+}

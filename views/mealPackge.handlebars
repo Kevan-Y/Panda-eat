@@ -1,0 +1,20 @@
+<div class="hero-image-meal">
+  <div class="hero-text-meal">
+    <h1>Our meal package</h1>
+  </div>
+</div>
+
+<div class="grid-container-meal">
+  <div id="title-meal">
+    <h2>Pick a package, choose your meals, achieve your goal - it's that easy!</h2>
+  </div>
+
+  {{#each mealPackage }}
+  <div class="grid-meal">
+    <img src="img/{{this.img}}" alt="">
+    <h4>{{this.packageName}}</h4>
+    <p>{{this.description}}</p>
+    <h5>${{this.price}}</h5>
+  </div>
+  {{/each}}
+</div>
