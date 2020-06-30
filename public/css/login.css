@@ -7,7 +7,7 @@ label {
 }
 
 .field-label {
-  font-weight: 600;
+  font-weight: 700;
 }
 
 .register-login h3 {
@@ -86,7 +86,15 @@ hr {
   border-radius: 25px;
   cursor: pointer;
 }
-
+.error {
+  padding: 0;
+  margin: 0;
+  font-size: 13px;
+  color: red;
+  grid-column: span 2;
+  margin: -12px 0 0 0;
+  font-weight: 600;
+}
 @media only screen and (max-width: 450px) {
   .login {
     width: 300px;

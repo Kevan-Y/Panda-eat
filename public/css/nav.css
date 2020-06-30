@@ -57,35 +57,41 @@ h6 {
 a {
   text-decoration: none;
 }
-.mini-nav{
+
+.mini-nav {
   display: none;
 }
+
 /* Responsive nav */
 @media only screen and (max-width: 720px) {
   .main-nav li {
-  display: block;
-  }
-  .logo i{
-    display:none;
-  }
-  .mini-nav{
-     display: flex;  
-      justify-content: space-between;
-   }
-  #bar{
     display: block;
-    padding: 10px 10px 10px 0 ;
-    font-size: 25px;
-    color:#f4fffb ;
   }
-  .main-nav{
-    display: none;      
-   }
-   
-   #miniLogo{
-    padding: 10px 0 10px 10px ;
-     font-size: 25px;
-     color: #f4fffb;
-   }
-   
+
+  .logo i {
+    display: none;
+  }
+
+  .mini-nav {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  #bar {
+    display: block;
+    padding: 10px 10px 10px 0;
+    font-size: 25px;
+    color: #f4fffb;
+  }
+
+  .main-nav {
+    display: none;
+  }
+
+  #miniLogo {
+    padding: 10px 0 10px 10px;
+    font-size: 25px;
+    color: #f4fffb;
+  }
+
 }

@@ -1,4 +1,4 @@
-<div class="login" id="loginPage">
+<div class="login" id="loginPage" style="display: {{login}};">
   <form action="/login-form" method="POST" class="register-login">
     <h3>Login</h3>
     <div class="wrap-alt-login">
@@ -8,14 +8,21 @@
       </ul>
     </div>
     <hr>
-
     <div class="input">
       <label for="Email" class="field-label">Email</label>
       <input class="form-control" type="email" name="emailInfo" id="emailInfo" placeholder="someone@panda.com"
-        autocomplete="email" tabindex="1" required />
+        autocomplete="email" tabindex="1" value="{{dataLogin.email}}" />
+      {{#if errorMessageLogin.invalidEmail}}
+      <span class="error">{{errorMessageLogin.invalidEmail}}</span>
+      {{/if}}
+
       <label for="passwordInfo" class="field-label">Password</label>
       <input class="form-control" type="password" name="passwordInfo" id="passwordInfo" placeholder="*************"
-        tabindex="2 " required />
+        tabindex="2" value="{{dataLogin.password}}" />
+      {{#if errorMessageLogin.invalidPassword}}
+      <span class="error">{{errorMessageLogin.invalidPassword}}</span>
+      {{/if}}
+
       <div class="button">
         <input type="submit" class="loginBut" value="Login" tabindex="3" style="background-color:#71a1d1;
         border: 2px solid #71a1d1;" />
@@ -27,7 +34,7 @@
 </div>
 
 
-<div class="login" id="signPage" style="display: none;">
+<div class="login" id="signPage" style="display:{{register}};">
   <form action="/register-form" method="POST" class="register-login">
     <h3>Register</h3>
     <div class="wrap-alt-login">
@@ -40,14 +47,33 @@
 
     <div class="input">
       <label for="firstInfo" class="field-label">First Name</label>
-      <input class="form-control" type="text" name="firstInfo" id="firstInfo" placeholder="" tabindex="1" required />
+      <input class="form-control" type="text" name="firstInfo" id="firstInfo" placeholder="" tabindex="1"
+        value="{{dataRegister.fistName}}" />
+      {{#if errorMessageRegister.invalidFirst}}
+      <span class="error">{{errorMessageRegister.invalidFirst}}</span>
+      {{/if}}
+
       <label for="lastInfo" class="field-label">Last Name</label>
-      <input class="form-control" type="text" name="lastInfo" id="lastInfo" tabindex="2" required />
+      <input class="form-control" type="text" name="lastInfo" id="lastInfo" tabindex="2"
+        value="{{dataRegister.lastName}}" />
+      {{#if errorMessageRegister.invalidLast}}
+      <span class="error">{{errorMessageRegister.invalidLast}}</span>
+      {{/if}}
+
       <label for="Email" class="field-label">Email</label>
       <input class="form-control" type="email" name="emailInfo" id="emailInfo" autocomplete="email" tabindex="3"
-        required />
+        value="{{dataRegister.email}}" />
+      {{#if errorMessageRegister.invalidEmail}}
+      <span class="error">{{errorMessageRegister.invalidEmail}}</span>
+      {{/if}}
+
       <label for="passwordInfo" class="field-label">Password</label>
-      <input class="form-control" type="password" name="passwordInfo" id="passwordInfo" tabindex="4 " required />
+      <input class="form-control" type="password" name="passwordInfo" id="passwordInfo" tabindex="4 "
+        value="{{dataRegister.password}}" />
+      {{#if errorMessageRegister.invalidPassword}}
+      <span class="error">{{errorMessageRegister.invalidPassword}}</span>
+      {{/if}}
+
       <div class="button">
         <input type="button" class="loginBut" value="Login" tabindex="5" id="loginOff" style=" background-color: #fffdfd;
         border: 2px solid grey ; " />
