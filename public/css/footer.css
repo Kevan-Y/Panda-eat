@@ -61,6 +61,7 @@
 #join {
   display: inline-block;
   margin: 1em;
+  padding: 5px;
   background-color: #71a1d1;
   border: 2px solid #f4fffb;
   color: #f4fffb;
@@ -70,6 +71,11 @@
 #join:hover {
   border: 2px solid #81d0e8;
   color: #81d0e8;
+  background-color: #f4fffb ;
+}
+
+.registerContainer{
+  overflow: hidden;
 }
 
 @media only screen and (max-width: 600px) {
