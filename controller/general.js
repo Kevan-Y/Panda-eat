@@ -22,6 +22,14 @@ router.get("/register", (req, res) => {
   });
 });
 
+//Dashboard route
+router.get("/dashboard", (req, res) => {
+  res.render("general/dashboard", {
+    title: "Dashboard",
+    style: "dashboard.css",
+  });
+});
+
 //Post for login
 router.post("/login-form", (req, res) => {
   const error = {};
@@ -68,8 +76,10 @@ router.post("/register-form", (req, res) => {
     `Register:\n First Name: ${dataRegisters.fistName}\n Last Name: ${dataRegisters.lastName}\n Email: ${dataRegisters.email}\n Password: ${dataRegisters.password}`
   );
 
-  if (dataRegisters.fistName == "") error.invalidFirst = "This field is required.";
-  if (dataRegisters.lastName == "") error.invalidLast = "This field is required.";
+  if (dataRegisters.fistName == "")
+    error.invalidFirst = "This field is required.";
+  if (dataRegisters.lastName == "")
+    error.invalidLast = "This field is required.";
   if (dataRegisters.email == "") error.invalidEmail = "This field is required.";
   else {
     if (!/^\w*@\w*\.\w*$/.test(dataRegisters.email))
@@ -84,35 +94,35 @@ router.post("/register-form", (req, res) => {
         "Please enter a password with between 6-12 characters and must have one letters and numbers only";
   }
 
-  if (Object.keys(error).length === 0){
-    const sgMail = require('@sendgrid/mail');
+  if (Object.keys(error).length === 0) {
+    const sgMail = require("@sendgrid/mail");
     sgMail.setApiKey(process.env.SENDGRID_API_KEY);
     const msg = {
       to: `${dataRegisters.email}`,
       from: `Kevanew@hotmail.com`,
-      subject: 'Registration to Panda Feed',
+      subject: "Registration to Panda Feed",
       html: `<h1>Welcome to Panda Feed</h1><br>
         Hi ${dataRegisters.fistName} ${dataRegisters.lastName}, you've actived your customer account. 
       `,
     };
-    sgMail.send(msg).then(()=>{
-        res.redirect('/');
-    }).catch(err=>{
+    sgMail
+      .send(msg)
+      .then(() => {
+        res.redirect("/dashboard");
+      })
+      .catch((err) => {
         console.log(`Error: ${err}`);
+      });
+  } else {
+    res.render("general/register", {
+      title: "Login",
+      style: "login.css",
+      errorMessageRegister: error,
+      register: "block",
+      login: "none",
+      dataRegister: dataRegisters,
     });
-
   }
-  else {
-  res.render("general/register", {
-    title: "Login",
-    style: "login.css",
-    errorMessageRegister: error,
-    register: "block",
-    login: "none",
-    dataRegister: dataRegisters,
-  });
-  }
-  
 });
 
 module.exports = router;

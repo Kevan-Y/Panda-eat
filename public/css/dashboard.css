@@ -1,0 +1,26 @@
+.contain {
+    min-height: calc(100vh - 92px - 338px);
+    text-align: center;
+}
+
+.buttonDash {
+    display: inline-block;
+    border: 3px solid #71a1d1;
+    padding: 15px;
+    margin: 5em;
+    color: #71a1d1;
+    font-weight: 600;
+    transition: transform 1s;
+}
+
+.buttonDash:hover {
+    transform: scale(1.2);
+    border: 1px solid #fffdfd;
+    border-radius: 2px;
+    color: #f4faf7;
+    background-color: #71a1d1;
+}
+
+#welcomeText {
+    margin-top: 2em;
+}

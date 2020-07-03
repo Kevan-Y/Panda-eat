@@ -1,11 +1,10 @@
 const express = require("express");
 const exphbs = require("express-handlebars");
 const fakeDBS = require("./model/fake-data");
-const bodyParser = require('body-parser');
+const bodyParser = require("body-parser");
 
 //load environment key and variable
-require('dotenv').config({path:'./config/keys.env'});
-
+require("dotenv").config({ path: "./config/keys.env" });
 
 const app = express();
 
@@ -22,7 +21,7 @@ app.use(express.static("public"));
 const generalController = require("./controller/general");
 
 //Map controllers
-app.use("/",generalController);
+app.use("/", generalController);
 
 //Meal-package route
 app.get("/meal-package", (req, res) => {
@@ -34,11 +33,11 @@ app.get("/meal-package", (req, res) => {
   });
 });
 
-
 app.post("/submit-form", (req, res) => {
   console.log(req.body.email + " join Panda Feed");
   res.redirect("/");
 });
 
-
-app.listen(process.env.PORT, () => console.log("The web server is up and running"));
+app.listen(process.env.PORT, () =>
+  console.log("The web server is up and running")
+);
