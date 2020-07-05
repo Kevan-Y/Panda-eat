@@ -75,15 +75,15 @@ router.post("/login-form", (req, res) => {
 
   //Print into log
   console.log(
-    `Login:\n Email: ${req.body.emailInfo}\n Password: ${req.body.passwordInfo}`
+    `Login:\n Email: ${dataLogins.email}\n Password: ${dataLogins.password}`
   );
 
-  if (req.body.emailInfo == "") error.invalidEmail = "This field is required.";
+  if (dataLogins.email == "") error.invalidEmail = "This field is required.";
   else {
-    if (!/^\w*@\w*\.\w*$/.test(req.body.emailInfo))
+    if (!/^\w*@\w*\.\w*$/.test(dataLogins.email))
       error.invalidEmail = "Please enter a valid email address.";
   }
-  if (req.body.passwordInfo == "")
+  if (dataLogins.password == "")
     error.invalidPassword = "This field is required.";
 
   res.render("general/register", {

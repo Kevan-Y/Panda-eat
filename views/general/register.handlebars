@@ -1,4 +1,5 @@
 <div class="registerContainer">
+ 
   <div class="login" id="loginPage" style="display: {{login}};">
     <form action="/login-form" method="POST" class="register-login">
       <h3>Login</h3>
@@ -11,14 +12,14 @@
       <hr>
       <div class="input">
         <label for="Email" class="field-label">Email</label>
-        <input class="form-control" type="email" name="emailInfo" id="emailInfo" placeholder="someone@panda.com"
+        <input class="form-control" type="email" name="emailInfo" id="emailInfos" placeholder="someone@panda.com"
           autocomplete="email" tabindex="1" value="{{dataLogin.email}}" />
         {{#if errorMessageLogin.invalidEmail}}
         <span class="error">{{errorMessageLogin.invalidEmail}}</span>
         {{/if}}
 
         <label for="passwordInfo" class="field-label">Password</label>
-        <input class="form-control" type="password" name="passwordInfo" id="passwordInfo" placeholder="*************"
+        <input class="form-control" type="password" name="passwordInfo" id="passwordInfos" placeholder="*************"
           tabindex="2" value="{{dataLogin.password}}" />
         {{#if errorMessageLogin.invalidPassword}}
         <span class="error">{{errorMessageLogin.invalidPassword}}</span>
@@ -33,7 +34,6 @@
       </div>
     </form>
   </div>
-
 
   <div class="login" id="signPage" style="display:{{register}};">
     <form action="/register-form" method="POST" class="register-login">
