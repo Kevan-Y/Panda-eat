@@ -1,6 +1,5 @@
 const express = require("express");
 const exphbs = require("express-handlebars");
-const fakeDBS = require("./model/fake-data");
 const bodyParser = require("body-parser");
 
 //load environment key and variable
@@ -22,21 +21,6 @@ const generalController = require("./controller/general");
 
 //Map controllers
 app.use("/", generalController);
-
-//Meal-package route
-app.get("/meal-package", (req, res) => {
-  const fakeDB = new fakeDBS();
-  res.render("mealPackge", {
-    title: "Meal Package",
-    style: "main.css",
-    mealPackage: fakeDB.getPackage(),
-  });
-});
-
-app.post("/submit-form", (req, res) => {
-  console.log(req.body.email + " join Panda Feed");
-  res.redirect("/");
-});
 
 app.listen(process.env.PORT, () =>
   console.log("The web server is up and running")

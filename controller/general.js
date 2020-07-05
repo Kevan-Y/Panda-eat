@@ -30,6 +30,41 @@ router.get("/dashboard", (req, res) => {
   });
 });
 
+//Meal-package route
+router.get("/meal-package", (req, res) => {
+  const fakeDB = new fakeDBS();
+  res.render("general/mealPackge", {
+    title: "Meal Package",
+    style: "main.css",
+    mealPackage: fakeDB.getPackage(),
+  });
+});
+
+//Post for newsletter
+router.post("/submit-form", (req, res) => {
+  console.log(req.body.email + " join Panda Feed");
+  if (req.body.email != "") {
+    const sgMail = require("@sendgrid/mail");
+    sgMail.setApiKey(process.env.SENDGRID_API_KEY);
+    const msg = {
+      to: `${req.body.email}`,
+      from: `Kevanew@hotmail.com`,
+      subject: "Newsletter Panda Feed",
+      html: `<h1>Welcome to Panda Feed</h1><br>
+      Dear customer, you have succefully subcribed to Panda Feed. 
+    `,
+    };
+    sgMail
+      .send(msg)
+      .then(() => {
+        res.redirect("/");
+      })
+      .catch((err) => {
+        console.log(`Error: ${err}`);
+      });
+  }
+});
+
 //Post for login
 router.post("/login-form", (req, res) => {
   const error = {};
@@ -71,10 +106,6 @@ router.post("/register-form", (req, res) => {
     email: req.body.emailInfo,
     password: req.body.passwordInfo,
   };
-
-  console.log(
-    `Register:\n First Name: ${dataRegisters.fistName}\n Last Name: ${dataRegisters.lastName}\n Email: ${dataRegisters.email}\n Password: ${dataRegisters.password}`
-  );
 
   if (dataRegisters.fistName == "")
     error.invalidFirst = "This field is required.";
