@@ -80,7 +80,7 @@ router.post("/login-form", (req, res) => {
 
   if (dataLogins.email == "") error.invalidEmail = "This field is required.";
   else {
-    if (!/^\w*@\w*\.\w*$/.test(dataLogins.email))
+    if (!/^\w*[\.\-]*\w*@\w*\.\w*$/.test(dataLogins.email))
       error.invalidEmail = "Please enter a valid email address.";
   }
   if (dataLogins.password == "")
@@ -113,7 +113,7 @@ router.post("/register-form", (req, res) => {
     error.invalidLast = "This field is required.";
   if (dataRegisters.email == "") error.invalidEmail = "This field is required.";
   else {
-    if (!/^\w*@\w*\.\w*$/.test(dataRegisters.email))
+    if (!/^\w*[\.\-]*\w*@\w*\.\w*$/.test(dataRegisters.email))
       error.invalidEmail = "Please enter a valid email address.";
   }
 
