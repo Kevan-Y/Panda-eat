@@ -6,19 +6,24 @@ const fakeDBS = require("../model/fake-data");
 router.get("/", (req, res) => {
   const fakeDB = new fakeDBS();
   res.render("general/home", {
-    title: "Panda Feed",
-    style: "main.css",
+    title: "Panda Eat",
     topMeal: fakeDB.getTopMeal(),
   });
 });
 
-//Register/login route
+//Register route
 router.get("/register", (req, res) => {
   res.render("general/register", {
+    title: "Register",
+    style: "login",
+  });
+});
+
+//login route
+router.get("/login", (req, res) => {
+  res.render("general/login", {
     title: "Login",
-    style: "login.css",
-    register: "none",
-    login: "block",
+    style: "login",
   });
 });
 
@@ -26,7 +31,7 @@ router.get("/register", (req, res) => {
 router.get("/dashboard", (req, res) => {
   res.render("general/dashboard", {
     title: "Dashboard",
-    style: "dashboard.css",
+    style: "dashboard",
   });
 });
 
@@ -35,23 +40,22 @@ router.get("/meal-package", (req, res) => {
   const fakeDB = new fakeDBS();
   res.render("general/mealPackge", {
     title: "Meal Package",
-    style: "main.css",
     mealPackage: fakeDB.getPackage(),
   });
 });
 
 //Post for newsletter
 router.post("/submit-form", (req, res) => {
-  console.log(req.body.email + " join Panda Feed");
-  if (req.body.email != "") {
+  if (req.body.email_news !== "") {
+    console.log(req.body.email_news);
     const sgMail = require("@sendgrid/mail");
     sgMail.setApiKey(process.env.SENDGRID_API_KEY);
     const msg = {
-      to: `${req.body.email}`,
+      to: `${req.body.email_news}`,
       from: `Kevanew@hotmail.com`,
-      subject: "Newsletter Panda Feed",
-      html: `<h1>Welcome to Panda Feed</h1><br>
-      Dear customer, you have succefully subcribed to Panda Feed. 
+      subject: "Newsletter Panda Eat",
+      html: `<h1>Welcome to Panda Eat</h1><br>
+      Dear customer, you have succefully subcribed to Panda Eat. 
     `,
     };
     sgMail
@@ -62,21 +66,18 @@ router.post("/submit-form", (req, res) => {
       .catch((err) => {
         console.log(`Error: ${err}`);
       });
+  } else {
+    res.redirect("/");
   }
 });
 
 //Post for login
-router.post("/login-form", (req, res) => {
+router.post("/login", (req, res) => {
   const error = {};
   const dataLogins = {
-    email: req.body.emailInfo,
-    password: req.body.passwordInfo,
+    email: req.body.email,
+    password: req.body.password,
   };
-
-  //Print into log
-  console.log(
-    `Login:\n Email: ${dataLogins.email}\n Password: ${dataLogins.password}`
-  );
 
   if (dataLogins.email == "") error.invalidEmail = "This field is required.";
   else {
@@ -86,25 +87,23 @@ router.post("/login-form", (req, res) => {
   if (dataLogins.password == "")
     error.invalidPassword = "This field is required.";
 
-  res.render("general/register", {
+  res.render("general/login", {
     title: "Login",
-    style: "login.css",
+    style: "login",
     errorMessageLogin: error,
-    register: "none",
-    login: "block",
     dataLogin: dataLogins,
   });
 });
 
 //Post for Register
-router.post("/register-form", (req, res) => {
+router.post("/register", (req, res) => {
   const error = {};
 
   const dataRegisters = {
-    fistName: req.body.firstInfo,
-    lastName: req.body.lastInfo,
-    email: req.body.emailInfo,
-    password: req.body.passwordInfo,
+    fistName: req.body.firstName,
+    lastName: req.body.lastName,
+    email: req.body.email,
+    password: req.body.password,
   };
 
   if (dataRegisters.fistName == "")
@@ -131,8 +130,8 @@ router.post("/register-form", (req, res) => {
     const msg = {
       to: `${dataRegisters.email}`,
       from: `Kevanew@hotmail.com`,
-      subject: "Registration to Panda Feed",
-      html: `<h1>Welcome to Panda Feed</h1><br>
+      subject: "Registration to Panda Eat",
+      html: `<h1>Welcome to Panda Eat</h1><br>
         Hi ${dataRegisters.fistName} ${dataRegisters.lastName}, you've actived your customer account. 
       `,
     };
@@ -147,10 +146,8 @@ router.post("/register-form", (req, res) => {
   } else {
     res.render("general/register", {
       title: "Login",
-      style: "login.css",
+      style: "login",
       errorMessageRegister: error,
-      register: "block",
-      login: "none",
       dataRegister: dataRegisters,
     });
   }

@@ -1,0 +1,46 @@
+<div class="container login-register-container">
+  <div class="row">
+    <div class="mx-auto col-md-6 login-form">
+      <h3>Login</h3>
+      <div class="wrap-alt-login">
+        <ul>
+          <li><a href="#"><i class="fab fa-facebook-square" style="color:#3b5998 ;"></i></a></li>
+          <li><a href="#"><i class="fab fa-google-plus-square" style="color:#dd4b39;"></i></a></li>
+        </ul>
+      </div>
+      <hr>
+      <form action="/login" method="POST">
+        <div class="form-group">
+          <div class="input-group mb-2">
+            <div class="input-group-prepend">
+              <div class="input-group-text"><i class="fas fa-envelope"></i></div>
+            </div>
+            <input type="email" class="form-control" name="email"placeholder="Your Email *" value="{{dataLogin.email}}" tabindex="1"/>
+          </div>
+          {{#if errorMessageLogin.invalidEmail}}
+          <span class="error">{{errorMessageLogin.invalidEmail}}</span>
+          {{/if}}
+        </div>
+
+        <div class="form-group">
+          <div class="input-group mb-2">
+            <div class="input-group-prepend">
+              <div class="input-group-text"><i class="fas fa-lock"></i></div>
+            </div>
+            <input type="password" class="form-control" name="password" placeholder="Your Password *" value="{{dataLogin.password}}" tabindex="2"/>
+          </div>
+          {{#if errorMessageLogin.invalidPassword}}
+          <span class="error">{{errorMessageLogin.invalidPassword}}</span>
+          {{/if}}
+        </div>
+
+        <div class="form-group">
+          <button type="submit" class="btnSubmit" tabindex="3">Login</button>
+        </div>
+        <div class="form-group">
+          <a href="#" class="ForgetPwd" tabindex="4">Forget Password?</a>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

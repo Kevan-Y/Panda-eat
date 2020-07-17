@@ -4,17 +4,28 @@
   </div>
 </div>
 
-<div class="grid-container-meal">
-  <div id="title-meal">
-    <h2>Pick a package, choose your meals, achieve your goal - it's that easy!</h2>
+<div class="container text-center meal">
+  <div class="row">
+    <div class="col-md">
+      <h2 class="title-meal">Pick a package, choose your meals, achieve your goal - it's that easy!</h2>
+    </div>
   </div>
-
-  {{#each mealPackage }}
-  <div class="grid-meal">
-    <img src="img/{{this.img}}" alt="">
-    <h4>{{this.packageName}}</h4>
-    <p>{{this.description}}</p>
-    <h5>${{this.price}}</h5>
+  <div class="row">
+    {{#each mealPackage }}
+    <div class="col-xl-3 col-lg-6">
+      <div class="card">
+        <img class="card-img-top" src="img/{{this.img}}" alt="Card image cap">
+        <div class="card-body">
+          <h5 class="card-text"><a href="#">{{this.packageName}}</a></h5>
+          <p class="card-text">{{this.description}}</p>
+        </div>
+        <div class="card-footer">
+          <h6>${{this.price}}</h6>
+        </div>
+      </div>
+    </div>
+    {{else}}
+    <div class="text col-md-12">No meal data is available at this time</div>
+    {{/each}}
   </div>
-  {{/each}}
 </div>

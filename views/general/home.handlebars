@@ -1,47 +1,73 @@
 <div class="hero-image-main">
   <div class="hero-text-main">
-    <h1>Panda Feed your daily meal devivery</h1>
-    <button href="#" class="hero-button-main"><a href="/meal-package" class="nav-links">View Package</a></button>
+    <h1>Panda Eat your daily meal devivery</h1>
+    <button class="hero-button-main" href="/meal-package">View Package</button>
   </div>
 </div>
 
-<div class="grid-container">
-  <div id="title">
-    <h2>No cooking, just eating.</h2>
+<div class="container-fluid text-center feature">
+  <div class="container">
+    <div class="row">
+      <div class="col-sm">
+        <h2>No cooking, just eating.</h2>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md">
+        <img src="img/computer.gif" alt="" />
+        <h3 class="subTimg">Pick</h3>
+        <p class="subDesc">Menu of all fresh dishes.</p>
+      </div>
+      <div class="col-md">
+        <img src="img/card.gif" alt="" />
+        <h3 class="subTimg">Pay</h3>
+        <p class="subDesc">Easy payment</p>
+      </div>
+      <div class="col-md">
+        <img src="img/delivery.gif" alt="" />
+        <h3 class="subTimg">Deliver</h3>
+        <p class="subDesc">Fast delivery</p>
+      </div>
+      <div class="col-md">
+        <img src="img/eat.gif" alt="" />
+        <h3 class="subTimg">Eat</h3>
+        <p class="subDesc">Delicious &amp; nutritious</p>
+      </div>
+    </div>
   </div>
-  <div class="grid-item">
-    <img src="img/computer.gif" alt="" />
-    <h3 class="subTimg">Pick</h3>
-    <p class="subDesc">Menu of all fresh dishes.</p>
-  </div>
-  <div class="grid-item">
-    <img src="img/delivery.gif" alt="" />
-    <h3 class="subTimg">Deliver</h3>
-    <p class="subDesc">Fast delivery</p>
-  </div>
-  <div class="grid-item">
-    <img src="img/eat.gif" alt="" />
-    <h3 class="subTimg">Eat</h3>
-    <p class="subDesc">Delicious &amp; nutritious</p>
-  </div>
+
 </div>
 
-
-<div class="grid-container-meal">
-  <div id="title-meal-top">
-    <h2>Our chefs are making these right now!</h2>
-    <p>
-      You could be chowing down on any of these meals any time you choose -
-      seriously! Order some (or all) of these meals and see why thousands of
-      Canadians stock us in their fridge!
-    </p>
+<div class="container text-center meal">
+  <div class="row">
+    <div class="col-md">
+      <h2>Our chefs are making these right now!</h2>
+    </div>
   </div>
-  {{#each topMeal }}
-  <div class="grid-meal">
-    <a href="#"><img src="img/{{this.img}}" alt="" /></a>
-    <h4>{{this.name}}</h4>
-    <h5>${{this.price}}</h5>
+  <div class="row">
+    <div class="col-md">
+      <p>
+        You could be chowing down on any of these meals any time you choose -
+        seriously! Order some (or all) of these meals and see why thousands of
+        Canadians stock us in their fridge!
+      </p>
+    </div>
   </div>
-  {{/each}}
-
+  <div class="row">
+    {{#each topMeal }}
+    <div class="col-xl-3 col-lg-6">
+      <div class="card">
+        <img class="card-img-top" src="img/{{this.img}}" alt="Card image cap">
+        <div class="card-body">
+          <h5 class="card-text"><a href="#">{{this.name}}</a></h5>
+        </div>
+        <div class="card-footer">
+          <h6>${{this.price}}</h6>
+        </div>
+      </div>
+    </div>
+    {{else}}
+    <div class="text col-md-12">No meal data is available at this time</div>
+    {{/each}}
+  </div>
 </div>

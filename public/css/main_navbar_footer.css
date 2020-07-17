@@ -1,0 +1,278 @@
+@import url('https://fonts.googleapis.com/css2?family=Baloo+Tamma+2:wght@600&family=Comic+Neue&display=swap');
+
+html,
+body {
+    background-color: #fffdfd;
+    font-family: 'Comic Neue', cursive;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: 'Baloo Tamma 2', cursive;
+}
+
+/* Navbar */
+.navbar {
+    padding-left: 10em;
+    padding-right: 10em;
+    background-color: #fffdfd !important;
+    border-bottom: 1px solid rgba(65, 65, 65, 0.075);
+}
+
+#nav-border .navbar-nav .nav-item {
+    transition: 250ms;
+}
+
+#nav-border .navbar-nav .nav-item:hover {
+    background-color: #EFAB49;
+    border-radius: 2em;
+
+}
+
+#nav-border .navbar-nav .nav-item .nav-link {
+    font-weight: 600 !important;
+    margin: auto 1em auto 1em;
+    transition: 250ms;
+
+}
+
+#nav-border .navbar-nav .nav-item .nav-link:hover {
+    color: #fffdfd;
+}
+
+#icon-right .nav-item .nav-link i {
+    font-size: 20px;
+    margin: auto 0.5em auto 0.5em;
+    color: black;
+    transition: 250ms;
+}
+
+#icon-right .nav-item .nav-link:hover i {
+    color: #EFAB49;
+}
+
+.dropdown-item:hover{
+    color:#EFAB49;
+}
+
+/* Hero Home page */
+.hero-image-main {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
+        url("../img/heroMain.jpg");
+    height: 550px;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: relative;
+}
+
+.hero-text-main {
+    text-align: center;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: #f4fffb;
+}
+
+.hero-button-main {
+    border: none;
+    outline: 0;
+    display: inline-block;
+    padding: 10px 25px;
+    text-align: center;
+    font-size: 15px;
+    cursor: pointer;
+    background-color: transparent;
+    transition: transform 0.5s;
+    border: 2px solid #EFAB49;
+    border-radius: 2em;
+}
+
+.hero-button-main {
+    color: #f4fffb;
+}
+
+.hero-button-main:hover {
+    color: #EFAB49;
+    transform: scale(1.1);
+}
+
+/* Hero meal Package */
+.hero-image-meal {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
+        url("../img/heroMeal.jpg");
+    height: 550px;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: relative;
+}
+
+.hero-text-meal {
+    text-align: center;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+}
+
+.grid-meal p {
+    margin: 0;
+}
+
+/* Feature container */
+.feature {
+    padding-top: 2em;
+    padding-bottom: 2em;
+    background-color: #efaa49ce;
+}
+
+.container .row {
+    margin-top: 1em;
+    margin-bottom: 1em;
+}
+
+/* Meal container */
+.meal {
+    padding-top: 2em;
+    padding-bottom: 2em;
+}
+
+.meal .row {
+    text-align: -webkit-center;
+}
+
+/* Only in meal package page for Meal title */
+.title-meal {
+    margin: 1em;
+}
+
+/* Card meal */
+.card {
+    width: 276px;
+    margin-bottom: 2em;
+    background-color: #fffdfd;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.card img {
+    transition: 500ms;
+}
+
+.card img:hover {
+    filter: brightness(1.15);
+    cursor: pointer;
+}
+
+.card-img-top {
+    width: 275px;
+    height: 275px;
+}
+
+.card-text a {
+    color: black;
+    text-decoration: none;
+    transition: 300ms;
+}
+
+.card-text a:hover {
+    color: #EFAB49;
+}
+
+.card-body {
+    background-color: #fffdfd;
+
+}
+
+.card-footer {
+    background-color: #fffdfd;
+}
+
+
+@media (min-width: 1200px) {
+    .meal {
+        max-width: 1400px;
+    }
+}
+
+/* Footer */
+
+footer {
+    background-color: #EFAB49;
+    padding: 3em 4em 1em 4em;
+}
+
+.footer-link {
+    margin-left: 6em;
+}
+
+.footer-link .nav-item {
+    margin: 0.5em;
+
+}
+
+.footer-link .nav-item a {
+    color: #fffdfd;
+    transition: 300ms;
+    text-decoration: none;
+}
+
+.footer-link .nav-item a:hover {
+    color: black;
+}
+
+.footer-link .nav-item a i {
+    padding-right: 1em;
+    margin-right: 1em;
+    border-right: 1px solid #fffdfd;
+}
+
+.footer-link .nav-item a:hover i {
+    border-right: 1px solid black;
+}
+
+#newsletter-email {
+    border-radius: 2em;
+}
+
+#btn-newsletter-email {
+    margin-top: 1em;
+    border: 2px solid #fffdfd;
+    border-radius: 2em;
+    padding: 0em 2em 0em 2em;
+    color: #fffdfd;
+    background-color: rgba(204, 144, 60, 0.144);
+    transition: 500ms;
+}
+
+#btn-newsletter-email:hover {
+    transform: scale(1.05);
+}
+
+#copyright {
+    margin-top: 2em;
+}
+
+#copyright h6 {
+    font-size: 13px;
+    color: #fffdfd;
+}
+
+@media only screen and (max-width: 1250px) {
+    .footer-link {
+        margin-left: 0em;
+    }
+}
+
+@media only screen and (max-width: 1000px) {
+    .navbar {
+        padding-left: 5em;
+        padding-right: 5em;
+    }
+}

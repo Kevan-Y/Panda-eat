@@ -1,41 +1,24 @@
-label {
-  display: block;
+.login-register-container{
+  margin-top: 5em;
+  margin-bottom: 5em;
 }
-
-.register-login {
-  border: 1px solid #dddddd;
+.login-form{
+  padding: 5em;
+  box-shadow: 0 5px 8px 0 rgba(0, 0, 0, 0.2), 0 9px 26px 0 rgba(0, 0, 0, 0.19);
 }
-
-.field-label {
-  font-weight: 700;
-}
-
-.register-login h3 {
-  margin-left: 20px;
-  margin-top: -15px;
-  display: table;
-  background: #fffdfd;
-}
-
-hr {
-  background-color: grey;
-  width: 75%;
-}
-
-.login {
-  margin-top: 5.5em;
-  margin-bottom: 5.5em;
-  margin-left: auto;
-  margin-right: auto;
-  width: 400px;
+.login-form h3{
+  text-align: center;
+  color: #333;
 }
 
 .wrap-alt-login ul {
+  margin-top: 1em;
   padding: 0;
   text-align: center;
 }
 
 .wrap-alt-login ul li {
+  margin: 1em;
   list-style: none;
   display: inline;
 }
@@ -49,42 +32,25 @@ hr {
   font-size: 40px;
 }
 
-.input {
-  display: grid;
-  grid-template-columns: repeat(2, 50%);
-  margin: 10px;
-  padding: 10px;
-  row-gap: 15px;
+.login-register-container form{
+  padding: 2em;
 }
-
-.form-control {
-  grid-column: span 2;
-  padding: 0.75em;
-}
-
-.button {
-  grid-column: span 2;
-  justify-self: end;
-  margin-top: 1em;
-  margin-bottom: 1em;
-}
-
-.button input {
-  height: 2.5em;
-  width: 7em;
-  margin-left: 1em;
-  margin-right: 1em;
-  color: black;
-}
-
-.loginBut {
-  border-radius: 25px;
+.btnSubmit
+{
+  width: 50%;
+  border-radius: 1rem;
+  padding: 7px;
+  border: none;
   cursor: pointer;
 }
-
-.signBut {
-  border-radius: 25px;
-  cursor: pointer;
+.login-form .btnSubmit{
+  font-weight: 600;
+  color: #fffdfd;
+  background-color: #EFAB49;
+}
+.login-form .ForgetPwd{
+  color: #EFAB49;
+  font-weight: 600;
 }
 
 .error {
@@ -97,8 +63,8 @@ hr {
   font-weight: 600;
 }
 
-@media only screen and (max-width: 450px) {
-  .login {
-    width: 300px;
+@media only screen and (max-width: 1000px) {
+  .login-form {
+    padding: 3em;
   }
 }
