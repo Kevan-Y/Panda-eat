@@ -1,12 +1,14 @@
-.login-register-container{
+.login-register-container {
   margin-top: 5em;
   margin-bottom: 5em;
 }
-.login-form{
-  padding: 5em;
+
+.login-form {
+  padding: 5%;
   box-shadow: 0 5px 8px 0 rgba(0, 0, 0, 0.2), 0 9px 26px 0 rgba(0, 0, 0, 0.19);
 }
-.login-form h3{
+
+.login-form h3 {
   text-align: center;
   color: #333;
 }
@@ -32,23 +34,25 @@
   font-size: 40px;
 }
 
-.login-register-container form{
+.login-register-container form {
   padding: 2em;
 }
-.btnSubmit
-{
+
+.btnSubmit {
   width: 50%;
   border-radius: 1rem;
   padding: 7px;
   border: none;
   cursor: pointer;
 }
-.login-form .btnSubmit{
+
+.login-form .btnSubmit {
   font-weight: 600;
   color: #fffdfd;
   background-color: #EFAB49;
 }
-.login-form .ForgetPwd{
+
+.login-form .ForgetPwd {
   color: #EFAB49;
   font-weight: 600;
 }
@@ -58,13 +62,6 @@
   margin: 0;
   font-size: 13px;
   color: red;
-  grid-column: span 2;
   margin: -12px 0 0 0;
   font-weight: 600;
-}
-
-@media only screen and (max-width: 1000px) {
-  .login-form {
-    padding: 3em;
-  }
 }

@@ -4,6 +4,11 @@ html,
 body {
     background-color: #fffdfd;
     font-family: 'Comic Neue', cursive;
+
+}
+
+.body-content {
+    min-height: calc(100vh - 375px);
 }
 
 h1,
@@ -55,8 +60,8 @@ h6 {
     color: #EFAB49;
 }
 
-.dropdown-item:hover{
-    color:#EFAB49;
+.dropdown-item:hover {
+    color: #EFAB49;
 }
 
 /* Hero Home page */

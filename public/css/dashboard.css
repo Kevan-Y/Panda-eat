@@ -1,23 +1,7 @@
-
-.buttonDash {
-    display: inline-block;
-    border: 3px solid #EFAB49;
-    padding: 15px;
-    margin: 5em;
-    color: #EFAB49;
-    font-weight: 600;
-    transition: transform 1s;
+.description {
+    font-weight: 700;
 }
 
-.buttonDash:hover {
-    text-decoration: none;
-    transform: scale(1.2);
-    border: 1px solid #fffdfd;
-    border-radius: 2px;
-    color: #f4faf7;
-    background-color: #EFAB49;
-}
-
-#welcomeText {
-    margin-top: 4em;
+.title {
+    margin-top: 1em;
 }
