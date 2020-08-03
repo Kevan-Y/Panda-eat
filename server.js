@@ -30,9 +30,11 @@ app.use(
 
 //Load controllers
 const generalController = require("./controller/general");
+const mealController =  require("./controller/meal-package");
 
 //Map controllers
 app.use("/", generalController);
+app.use("/meal-package", generalController);
 
 db.initialize()
   .then(() => {

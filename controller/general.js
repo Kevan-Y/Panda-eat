@@ -1,21 +1,55 @@
 const express = require("express");
 const router = express.Router();
-const fakeDBS = require("../model/fake-data");
+const multer = require("multer");
+const path = require("path");
+const uuid = require("uuid");
 const db = require("../model/database");
+
+const imageFilter = (req, file, cb) => {
+  if (file.mimetype.startsWith("image")) {
+    return cb(null, true);
+  } else {
+    return cb(new Error("Not an image! Please upload an image.", 400), false);
+  }
+};
+
+const storage = multer.diskStorage({
+  destination: "./public/img/",
+  filename: (req, file, cb) => {
+    cb(null, uuid.v4().toString() + path.extname(file.originalname));
+  },
+});
+
+const upload = multer({ storage: storage, fileFilter: imageFilter });
 
 function ensureLogin(req, res, next) {
   if (!req.session.user) res.redirect("/login");
   else next();
 }
 
+function ensureAdmin(req, res, next) {
+  if (!req.session.user || req.session.user.role != "Admin")
+    res.redirect("/dashboard");
+  else next();
+}
+
 //Home route
 router.get("/", (req, res) => {
-  const fakeDB = new fakeDBS();
-  res.render("general/home", {
-    title: "Panda Eat",
-    topMeal: fakeDB.getTopMeal(),
-    userData: req.session.user,
-  });
+  db.getTopMeal()
+    .then((data) => {
+      res.render("general/home", {
+        title: "Panda Eat",
+        topMeal: data.length != 0 ? data : undefined,
+        userData: req.session.user,
+      });
+    })
+    .catch((err) => {
+      res.render("general/home", {
+        title: "Panda Eat",
+        topMeal: undefined,
+        userData: req.session.user,
+      });
+    });
 });
 
 //Register route
@@ -45,18 +79,87 @@ router.get("/dashboard", ensureLogin, (req, res) => {
 
 //Meal-package route
 router.get("/meal-package", (req, res) => {
-  const fakeDB = new fakeDBS();
-  res.render("general/mealPackge", {
-    title: "Meal Package",
-    mealPackage: fakeDB.getPackage(),
-    userData: req.session.user,
-  });
+  db.getMeal()
+    .then((data) => {
+      res.render("general/mealPackge", {
+        title: "Meal Package",
+        mealPackage: data.length != 0 ? data : undefined,
+        userData: req.session.user,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      res.render("general/mealPackge", {
+        title: "Meal Package",
+        mealPackage: undefined,
+        userData: req.session.user,
+      });
+    });
 });
 
 //Log out route
 router.get("/logout", (req, res) => {
   req.session.reset();
   res.redirect(`/${req.headers.referer.split("/")[3]}`);
+});
+
+//Add meal route
+router.get("/add-meal", ensureAdmin, (req, res) => {
+  res.render("general/addMealPackage", {
+    title: "Add Meal Package",
+    style: "addMeal",
+    userData: req.session.user,
+  });
+});
+
+router.get("/meal",ensureAdmin, (req, res) => {
+  db.getMeal()
+    .then((data) => {
+      res.render("general/meal", {
+        title: "Meal",
+        meal: data.length != 0 ? data : undefined,
+        userData: req.session.user,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      res.render("general/meal", {
+        title: "Meal",
+        mealPackage: undefined,
+        userData: req.session.user,
+      });
+    });
+});
+
+router.get("/edit",ensureAdmin, (req, res) => {
+  if (req.query.id) {
+    db.getMealbyId(req.query.id)
+      .then((datas) => {
+        res.render("general/editMeal", {
+          title: "Edit Meal Package",
+          data: datas,
+          userData: req.session.user,
+        });
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }
+});
+
+router.get("/delete",ensureAdmin, (req, res) => {
+  if (req.query.id) {
+    db.deleteMealById(req.query.id)
+      .then(() => {
+        res.redirect("/meal");
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  } else {
+    console.log("No Query");
+    res.redirect("/meal");
+  }
 });
 
 //Post for newsletter
@@ -207,6 +310,57 @@ router.post("/register", (req, res) => {
       dataRegister: dataRegisters,
     });
   }
+});
+
+//Post Add meal
+router.post("/add-meal", upload.single("image"), (req, res) => {
+  req.body.image = req.file.filename;
+  db.addMeal(req.body)
+    .then(() => {
+      res.redirect("/meal");
+    })
+    .catch((err) => {
+      if (err.code === 11000) {
+        res.render("general/addMealPackage", {
+          title: "Add Meal Package",
+          style: "addMeal",
+          userData: req.session.user,
+          data: req.body,
+          errorMessage: "Meal Already exist",
+        });
+      }
+      console.log(err);
+    });
+});
+
+//Post Edit meal
+router.post("/edit-meal", (req, res) => {
+  db.editMealById(req.body)
+    .then(() => {
+      res.redirect("/meal");
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+});
+
+//Check for error
+router.use((err, req, res, next) => {
+  if (req.headers.referer.split("/")[3] === "add-meal")
+    res.status(500).render("general/addMealPackage", {
+      title: "Add Meal Package",
+      style: "addMeal",
+      userData: req.session.user,
+      data: req.body,
+      errorMessage: "Cannot upload non-image files!",
+    });
+  else if (req.headers.referer.split("/")[3] === "edit")
+    res.status(500).render("general/edit", {
+      title: "Edit Meal Package",
+      userData: req.session.user,
+      data: req.body,
+      errorMessage: "Cannot upload non-image files!",
+    });
 });
 
 module.exports = router;

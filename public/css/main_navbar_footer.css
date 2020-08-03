@@ -177,6 +177,7 @@ h6 {
 }
 
 .card-img-top {
+    object-fit: cover;
     width: 275px;
     height: 275px;
 }
@@ -193,7 +194,17 @@ h6 {
 
 .card-body {
     background-color: #fffdfd;
+}
 
+.card-body p {
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+.card-body p:hover {
+    max-height: none;
+    white-space: normal;
 }
 
 .card-footer {
@@ -281,4 +292,13 @@ footer {
         padding-left: 5em;
         padding-right: 5em;
     }
+}
+
+.badge-notify i {
+    position: absolute;
+    ;
+    top: 7px;
+    right: 5px;
+    font-size: 15px;
+    color: yellow;
 }

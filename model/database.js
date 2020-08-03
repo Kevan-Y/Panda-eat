@@ -11,9 +11,20 @@ let userSchema = new Schema({
   role: String,
 });
 
-let Users;
+let mealSchema = new Schema({
+  name: { type: String, unique: true },
+  price: Number,
+  description: String,
+  category: String,
+  numOfMeal: Number,
+  top: Boolean,
+  image: String,
+});
 
-module.exports.initialize = function () {
+let Users;
+let Meals;
+
+module.exports.initialize = () => {
   return new Promise((resolve, reject) => {
     let db = mongoose.createConnection(process.env.MONGOBD_CONNECTION_STRING, {
       useNewUrlParser: true,
@@ -26,12 +37,14 @@ module.exports.initialize = function () {
 
     db.once("open", () => {
       Users = db.model("Users", userSchema);
+      Meals = db.model("Meals", mealSchema);
       resolve();
     });
   });
 };
 
-module.exports.addUser = function (data) {
+// Users
+module.exports.addUser = (data) => {
   return new Promise((resolve, reject) => {
     for (var formEntry in data) {
       if (data[formEntry] == "") data[formEntry] = null;
@@ -101,5 +114,115 @@ module.exports.validateUser = (data) => {
           reject(err);
         });
     }
+  });
+};
+
+// Meal
+module.exports.addMeal = (data) => {
+  return new Promise((resolve, reject) => {
+    data.top ? (data.top = true) : (data.top = false);
+    for (var formEntry in data)
+      if (data[formEntry] == "") data[formEntry] = null;
+
+    let newMeal = new Meals(data);
+
+    newMeal.save((err) => {
+      if (err) {
+        console.log(`There was an error saving the Meal: ${err}`);
+        reject(err);
+      } else {
+        console.log(`Saved that Meal: ${data.name}`);
+        resolve();
+      }
+    });
+  });
+};
+
+module.exports.getTopMeal = () => {
+  return new Promise((resolve, reject) => {
+    Meals.find({ top: true })
+      .exec()
+      .then((returnMeal) => {
+        if (returnMeal) resolve(returnMeal.map((meal) => meal.toObject()));
+        else reject(`No Top Meal.`);
+      })
+      .catch((err) => {
+        console.log(`Error Retriving Meals: ${err}`);
+        reject(err);
+      });
+  });
+};
+module.exports.getMeal = () => {
+  return new Promise((resolve, reject) => {
+    Meals.find()
+      .exec()
+      .then((returnMeal) => {
+        if (returnMeal) resolve(returnMeal.map((meal) => meal.toObject()));
+        else reject(`No Top Meal.`);
+      })
+      .catch((err) => {
+        console.log(`Error Retriving Meals: ${err}`);
+        reject(err);
+      });
+  });
+};
+
+module.exports.getMealbyId = (inId) => {
+  return new Promise((resolve, reject) => {
+    Meals.findOne({ _id: inId })
+      .exec()
+      .then((returnMeal) => {
+        if (returnMeal) resolve(returnMeal.toObject());
+        else reject(`No Top Meal.`);
+      })
+      .catch((err) => {
+        console.log(`Error Retriving Meals: ${err}`);
+        reject(err);
+      });
+  });
+};
+
+module.exports.deleteMealById = (inId) => {
+  return new Promise((resolve, reject) => {
+    Meals.deleteOne({ _id: inId })
+      .exec()
+      .then(() => {
+        resolve();
+      })
+      .catch((err) => {
+        reject(err);
+      });
+  });
+};
+
+module.exports.editMealById = (data) => {
+  return new Promise((resolve, reject) => {
+    data.top ? (data.top = true) : (data.top = false);
+    for (var formEntry in data) {
+      if (data[formEntry] == "") data[formEntry] = null;
+    }
+    Meals.updateOne(
+      {
+        _id: data._id,
+      },
+      {
+        $set: {
+          name: data.name,
+          price: data.price,
+          description: data.description,
+          category: data.category,
+          numOfMeal: data.numOfMeal,
+          top: data.top,
+        },
+      }
+    )
+      .exec()
+      .then(() => {
+        console.log(`Meal ${data.name} has been updated`);
+        resolve();
+      })
+      .catch((err) => {
+        reject(err);
+      });
   });
 };
