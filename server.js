@@ -12,18 +12,18 @@ const app = express();
 //Handlebars middleware
 app.engine("handlebars", exphbs());
 app.set("view engine", "handlebars");
+app.use(express.static("public"));
 
 // parse application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({ extended: false }));
 
-app.use(express.static("public"));
 
 // Setup client-sessions
 app.use(
   clientSessions({
     cookieName: "session", 
     secret: "panda_eat_web322", 
-    duration: 2 * 60 * 1000, 
+    duration: 10 * 60 * 1000, 
     activeDuration: 1000 * 60, 
   })
 );
@@ -34,7 +34,7 @@ const mealController =  require("./controller/meal-package");
 
 //Map controllers
 app.use("/", generalController);
-app.use("/meal-package", generalController);
+app.use("/meal-package", mealController);
 
 db.initialize()
   .then(() => {
