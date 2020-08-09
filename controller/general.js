@@ -15,13 +15,18 @@ router.get("/", (req, res) => {
         title: "Panda Eat",
         topMeal: data.length != 0 ? data : undefined,
         userData: req.session.user,
+        userCart:
+          req.session.bag == undefined ? undefined : req.session.bag.quantity,
       });
     })
     .catch((err) => {
+      console.log(err);
       res.render("general/home", {
         title: "Panda Eat",
         topMeal: undefined,
         userData: req.session.user,
+        userCart:
+          req.session.bag == undefined ? undefined : req.session.bag.quantity,
       });
     });
 });
@@ -46,8 +51,9 @@ router.get("/login", (req, res) => {
 router.get("/dashboard", ensureLogin, (req, res) => {
   res.render("general/dashboard", {
     title: "Dashboard",
-    style: "dashboard",
     userData: req.session.user,
+    userCart:
+      req.session.bag == undefined ? undefined : req.session.bag.quantity,
   });
 });
 
@@ -55,6 +61,39 @@ router.get("/dashboard", ensureLogin, (req, res) => {
 router.get("/logout", (req, res) => {
   req.session.reset();
   res.redirect(`/${req.headers.referer.split("/")[3]}`);
+});
+
+//Checkout route
+router.get("/checkout", ensureLogin, (req, res) => {
+  req.session.bag.total = 0;
+  req.session.bag.cart.forEach((i) => {
+    req.session.bag.total += i.price * i.qty;
+  });
+  console.log(req.session.bag.total);
+
+  res.render("general/checkout", {
+    title: "Checkout",
+    userData: req.session.user,
+    meal: req.session.bag.cart,
+    total: {
+      tempTotal: new Intl.NumberFormat("en-CA", {
+        style: "currency",
+        currency: "CAD",
+      }).format(req.session.bag.total),
+      tax: new Intl.NumberFormat("en-CA", {
+        style: "currency",
+        currency: "CAD",
+      }).format(req.session.bag.total * 0.13),
+      totals: new Intl.NumberFormat("en-CA", {
+        style: "currency",
+        currency: "CAD",
+      }).format(req.session.bag.total * 1.13),
+    },
+    script: "checkoutUpdate.js",
+    style: "checkout",
+    userCart:
+      req.session.bag == undefined ? undefined : req.session.bag.quantity,
+  });
 });
 
 //Post for newsletter
@@ -111,6 +150,7 @@ router.post("/login", (req, res) => {
     db.validateUser(dataLogins)
       .then((data) => {
         req.session.user = data;
+        req.session.bag = { cart: [], total: 0, quantity: 0 };
         res.redirect("/dashboard");
       })
       .catch((err) => {
@@ -180,7 +220,7 @@ router.post("/register", (req, res) => {
               email: dataRegisters.email,
             };
             req.session.user = data;
-            console.log("Here");
+            req.session.bag = { cart: [], total: 0, quantity: 0 };
             res.redirect("/dashboard");
           })
           .catch((err) => {
@@ -205,6 +245,57 @@ router.post("/register", (req, res) => {
       dataRegister: dataRegisters,
     });
   }
+});
+
+//Post Checkout
+router.post("/checkout", (req, res) => {
+  console.log(req.session.bag);
+  const sgMail = require("@sendgrid/mail");
+  sgMail.setApiKey(process.env.SENDGRID_API_KEY);
+  let htmlText = `<table>
+  <thead >
+      <tr>
+          <td style="padding-right: 4em;">Product</td>
+          <td style=" padding-right: 2em; ">Quantity</td>
+          <td style="padding-left: 4em; text-align: right;">Price</td>
+      </tr>
+  </thead>
+  <tbody>`;
+  req.session.bag.cart.forEach((meal) => {
+    htmlText += `<tr>
+    <td >${meal.name}</td >
+    <td >${meal.qty}</td>
+    <td  style="text-align: right;">CA$${meal.price}</td>
+    </tr>
+    `;
+  });
+  htmlText += `</tbody>
+  <tfoot>
+      <tr>
+          <td colspan="2"></td>
+          <td>Total: CA${req.session.bag.total * 1.13}</td>
+      </tr>
+  </tfoot>
+</table>`;
+  const msg = {
+    to: `${req.session.user.email}`,
+    from: `${process.env.SENDGRID_EMAIL}`,
+    subject: "Your Order",
+    html: htmlText,
+  };
+
+  sgMail
+    .send(msg)
+    .then(() => {
+      req.session.bag.cart.splice(0, req.session.bag.cart.length);
+      req.session.bag.total = 0;
+      req.session.bag.quantity = 0;
+      console.log("Final", req.session.bag);
+      res.json({ data: req.session.bag });
+    })
+    .catch((err) => {
+      console.log(`Error: ${err}`);
+    });
 });
 
 module.exports = router;

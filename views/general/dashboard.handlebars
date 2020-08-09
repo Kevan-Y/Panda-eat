@@ -1,26 +1,26 @@
 <div class="container">
-    <h1 class="title">Dashboard</h1>
+    <h1 class="title mt-3">Dashboard</h1>
     <hr>
     <h3>Account information</h3>
     <div class="container">
         <div class="row">
             <div class="col-sm">
-                <span class="description">First name:</span> <span>{{userData.firstName}}</span>
+                <span class="font-weight-bold">First name:</span> <span>{{userData.firstName}}</span>
             </div>
         </div>
         <div class="row">
             <div class="col-sm">
-                <span class="description">Last name:</span> <span>{{userData.lastName}}</span>
+                <span class="font-weight-bold">Last name:</span> <span>{{userData.lastName}}</span>
             </div>
         </div>
         <div class="row">
             <div class="col-sm">
-                <span class="description">Email:</span> <span>{{userData.email}}</span>
+                <span class="font-weight-bold">Email:</span> <span>{{userData.email}}</span>
             </div>
         </div>
         <div class="row">
             <div class="col-sm">
-                <span class="description">Account Type:</span>
+                <span class="font-weight-bold">Account Type:</span>
                 {{#if userData.role}}
                 <span>{{userData.role}}</span>
                 {{else}}

@@ -1,0 +1,56 @@
+.total span {
+    float: right;
+}
+
+.total {
+    margin: 2em;
+    padding: 1em;
+    box-shadow: 0 5px 8px 0 rgba(0, 0, 0, 0.2), 0 9px 26px 0 rgba(0, 0, 0, 0.19);
+    max-height: 300px;
+    background-color: #f7f7f7;
+}
+
+.total button {
+    margin-top: 2em;
+}
+
+.meal {
+    margin: 2em;
+    background-color: #f7f7f7;
+    box-shadow: 0 5px 8px 0 rgba(0, 0, 0, 0.2), 0 9px 26px 0 rgba(0, 0, 0, 0.19);
+
+}
+
+.meal h4 {
+    text-align: center;
+}
+
+.meal .row .col-lg-5 {
+    text-align: left;
+}
+
+.meal .row .col-lg-5 p {
+    margin: 0.5em;
+}
+
+.meal .row .col-lg-5 p a {
+    text-decoration: none;
+    color: black;
+    font-size: 20px;
+    transition: 250ms;
+}
+
+.meal .row .col-lg-5 p a:hover {
+    color: #EFAB49;
+}
+
+.desc {
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+.desc:hover {
+    max-height: none;
+    white-space: normal;
+}

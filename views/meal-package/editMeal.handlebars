@@ -1,13 +1,13 @@
- {{#if errorMessage}}
-  <div class="container">
-    <div class="alert alert-danger alert-dismissible fade show" role="alert">
-      <strong>Error: </strong>{{errorMessage}}.
-      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-        <span aria-hidden="true">&times;</span>
-      </button>
-    </div>
+{{#if errorMessage}}
+<div class="container">
+  <div class="alert alert-danger alert-dismissible fade show" role="alert">
+    <strong>Error: </strong>{{errorMessage}}.
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
   </div>
-  {{/if}}
+</div>
+{{/if}}
 
 <div class="container mt-5 mb-5">
   <h1>Edit meal package</h1>
@@ -16,7 +16,8 @@
     <div class="form-group row">
       <label for="mealName" class="col-sm-2 col-form-label">Meal Package Name</label>
       <div class="col-sm-6">
-        <input type="text" class="form-control" name="name" id="mealName" placeholder="Meal Package Name *" value="{{data.name}}"required>
+        <input type="text" class="form-control" name="name" id="mealName" placeholder="Meal Package Name *"
+          value="{{data.name}}" required>
       </div>
     </div>
     <div class="form-group row">
@@ -25,7 +26,8 @@
         <div class="input-group-prepend">
           <span class="input-group-text">$</span>
         </div>
-        <input type="Number" class="form-control" name="price" id="mealPrice" placeholder="Price *" step="0.01" value="{{data.price}}" required>
+        <input type="Number" class="form-control" name="price" id="mealPrice" placeholder="Price *" step="0.01"
+          value="{{data.price}}" required>
       </div>
     </div>
     <div class="form-group row">
@@ -37,28 +39,30 @@
     <div class="form-group row">
       <label for="mealCategory" class="col-sm-2 col-form-label">Food category</label>
       <div class="col-sm-6">
-        <input type="text" class="form-control" name="category" id="mealCategory" placeholder="Food category *" value="{{data.category}}" required>
+        <input type="text" class="form-control" name="category" id="mealCategory" placeholder="Food category *"
+          value="{{data.category}}" required>
       </div>
     </div>
     <div class="form-group row">
       <label for="mealNumber" class="col-sm-2 col-form-label">Number of meal</label>
       <div class="col-sm-6">
-        <input type="number" class="form-control" min="1" name="numOfMeal" id="mealNumber" value="{{data.numOfMeal}}"  required>
+        <input type="number" class="form-control" min="1" name="numOfMeal" id="mealNumber" value="{{data.numOfMeal}}"
+          required>
       </div>
     </div>
     <div class="form-group row">
       <label for="mealTop" class="col-sm-2">Top Meal</label>
       <div class="col-sm-6 ml-5 mb-2">
-        <input class="form-check-input" type="checkbox" name="top" id="mealTop"{{#if data.top}}checked{{/if}}>
-        
+        <input class="form-check-input" type="checkbox" name="top" id="mealTop" {{#if data.top}}checked{{/if}}>
+
       </div>
     </div>
-        <input type="text" name="_id" value={{data._id}} hidden>
-    
+    <input type="text" name="_id" value={{data._id}} hidden>
+
     <div class="form-group row">
       <div class="col-sm-8 text-right">
-        <a href="/meal-package/meals" class="btn btn-primary pull-right">Cancel</a>
-        <button type="submit" class="btn btn-primary pull-right">Edit</button>
+        <a href="/meal-package/meals" class="btn btn-danger pull-right">Cancel</a>
+        <button type="submit" class="btn btn-success pull-right">Edit</button>
       </div>
     </div>
   </form>

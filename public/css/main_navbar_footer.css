@@ -8,7 +8,7 @@ body {
 }
 
 .body-content {
-    min-height: calc(100vh - 375px);
+    min-height: calc(100vh - 375px - 77px);
 }
 
 h1,

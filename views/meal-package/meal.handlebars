@@ -1,0 +1,16 @@
+<div class="container">
+    <div class="row">
+        <div class="col-lg-4">
+            <img class="img-fluid" src="img/{{data.image}}" alt="">
+        </div>
+        <div class="col-lg-6">
+            <h3>{{data.name}}</h3>
+            <h5>CA${{data.price}}</h5>
+            <p>{{data.description}}</p>
+            <p>Package contains {{data.numOfMeal}} meals.</p>
+            <input type="number" class="form-control num mb-3 col-lg-2" min="1" value="1" />
+            <button class="btn btn-success " type="button" onclick='addToCart("{{data._id}}")'>Add to
+                Cart</button>
+        </div>
+    </div>
+</div>

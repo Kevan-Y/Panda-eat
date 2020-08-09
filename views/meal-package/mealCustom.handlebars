@@ -1,0 +1,32 @@
+<div class="container mt-5 mb-5">
+    <h1>Meal package</h1>
+    <hr>
+    {{#each meal}}
+    <div class="row">
+        <div class="col-lg-1" style=" text-align: center;
+    align-self: center;">
+            <img class="img-fluid" src="img/{{this.image}}" alt="Image for {{this.name}}" width="250px">
+        </div>
+        <div class="col-lg-2"><span class="font-weight-bold">Name: </span>{{this.name}}</div>
+        <div class="col-lg-2"><span class="font-weight-bold">Description: </span>{{this.description}}</div>
+        <div class="col-lg-2"><span class="font-weight-bold">Category: </span>{{this.category}}</div>
+        {{#if this.top}}
+        <div class="col-lg-1 font-weight-bold">Top Meal</div>
+        {{else}}
+        <div class="col-lg-1 font-weight-bold">Not Top Meal</div>
+        {{/if}}
+        <div class="col-lg-1"><span class="font-weight-bold">Number of Meal: </span>{{this.numOfMeal}}</div>
+        <div class="col-lg-1"><span class="font-weight-bold">Price: </span>${{this.price}}</div>
+
+        <div class="col-lg-1">
+            <a href="/meal-package/edit?id={{this._id}}" class="btn btn-outline-primary mt-3">Edit</a>
+        </div>
+        <div class="col-lg-1">
+            <a href="/meal-package/delete?id={{this._id}}" class="btn btn-outline-danger mt-3">Delete</a>
+        </div>
+    </div>
+    <hr>
+    {{else}}
+    <h4>No meal were found</h4>
+    {{/each}}
+</div>

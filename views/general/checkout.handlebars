@@ -1,0 +1,61 @@
+<div class="container error"></div>
+
+<div class="modal fade" id="successful-checkout" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Checkout</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        Your order has been made successfully, a confirmation email has been sent.
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-success" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+  <div class="row" style="justify-content: center;">
+    <h1>Shopping Cart</h1>
+  </div>
+
+  <div class="row">
+    <div class="col meal">
+      {{#each meal}}
+      <div class="row">
+        <div class="col-lg-3">
+          <img class="img-fluid" src="img/{{this.image}}" alt="Image for {{this.name}}">
+        </div>
+        <div class="col-lg-5">
+          <p class="font-weight-bold"><a href="/meal-package/meal?id={{this._id}}">{{this.name}}</a></p>
+          <p class="desc">{{this.description}}</p>
+          <p>Number of meal: {{this.numOfMeal}}</p>
+        </div>
+        <div class="col-lg-2">
+          <input type="number" class="form-control num" id="{{this._id}}" min="0" value="{{this.qty}}"
+            onchange='changeFromCart("{{this._id}}")' />
+        </div>
+        <div class="col-lg-2">CA${{this.price}}</div>
+      </div>
+      {{else}}
+      <h4>Your shopping cart is empty</h4>
+      {{/each}}
+    </div>
+    <div class="col-lg-4 total">
+      <p class="font-weight-bold">The total amount of</p>
+      <p>Subtotal<span class="tempTotal"> {{total.tempTotal}}</span></p>
+      <P>Shipping <span>Free</span></P>
+      <P>Tax <span class="tax">{{total.tax}}</span></P>
+      <hr>
+      <p>The total amount of (include HST) <span class="totals">{{total.totals}}</span></p>
+      <button class="btn btn-primary btn-block" type="button" onclick='checkoutAJAXRequest("{{total.totals}}")'>
+        Checkout</button>
+    </div>
+  </div>
+
+</div>

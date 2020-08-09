@@ -14,10 +14,11 @@
     {{#each mealPackage }}
     <div class="col-xl-3 col-lg-6">
       <div class="card">
-        <img class="card-img-top" src="img/{{this.image}}" alt="Card image cap">
+        <a href="/meal-package/meal?id={{this._id}}"> <img class="card-img-top" src="img/{{this.image}}"
+            alt="Card image for {{this.name}}"></a>
         <span class="badge badge-notify">{{#if this.top}}<i class="fas fa-crown "></i> {{/if}}</span>
         <div class="card-body">
-          <h5 class="card-text"><a href="#">{{this.name}}</a></h5>
+          <h5 class="card-text"><a href="/meal-package/meal?id={{this._id}}">{{this.name}}</a></h5>
           <p class="card-text">{{this.description}}</p>
         </div>
         <div class="card-footer">
