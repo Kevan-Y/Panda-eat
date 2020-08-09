@@ -3,6 +3,7 @@ const router = express.Router();
 const multer = require("multer");
 const path = require("path");
 const uuid = require("uuid");
+const fs = require("fs");
 const db = require("../model/database");
 
 router.use(express.static("public"));
@@ -111,9 +112,20 @@ router.get("/edit", ensureAdmin, (req, res) => {
 
 router.get("/delete", ensureAdmin, (req, res) => {
   if (req.query.id) {
-    db.deleteMealById(req.query.id)
-      .then(() => {
-        res.redirect("/meal-package/meals");
+    db.getMealbyId(req.query.id)
+      .then((data) => {
+        let img = data.image;
+        db.deleteMealById(req.query.id)
+          .then(() => {
+            fs.unlink(`public/img/${img}`, (err) => {
+              if (err) console.log(err);
+              console.log(`/public/img/${img} was deleted`);
+            });
+            res.redirect("/meal-package/meals");
+          })
+          .catch((err) => {
+            console.log(err);
+          });
       })
       .catch((err) => {
         console.log(err);
