@@ -1,11 +1,3 @@
-// GitHub Link: https://github.com/Pandanoxes/Meal-Dev
-// Heroku Link: https://panda-eat.herokuapp.com/
-// Admin credential:
-//        Email: kevanew@hotmail.com
-//        Password: Yang2001** (Don't worry this password I don't used in real life)
-// Normal User credential:
-//        Email: kevinxxlvp@live.fr
-//        Password: Yang2001** (Don't worry this password I don't used in real life)
 const express = require("express");
 const exphbs = require("express-handlebars");
 const bodyParser = require("body-parser");
